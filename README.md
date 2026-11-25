@@ -20,7 +20,7 @@
 
 ## Overview
 
-Kintsugi (formerly *Windows Security Patcher*) is named after the Japanese art of repairing broken pottery with gold. It provides direct controls for security settings that can become unavailable through the standard Windows Security interface. It can:
+Kintsugi provides direct controls for security settings that can become unavailable through the standard Windows Security interface. It can:
 
 - Enable or disable **Memory Integrity (HVCI)**.
 - Enable or disable **Kernel-mode Hardware-enforced Stack Protection (KSHSP)**.
