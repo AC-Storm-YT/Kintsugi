@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <clipPath id="inner"><path d="M256 60 L418 108 V236 C418 336 352 406 256 450 C160 406 94 336 94 236 V108 Z"/></clipPath>
+    <clipPath id="outer"><path d="M256 20 L456 80 V232 C456 362 374 446 256 496 C138 446 56 362 56 232 V80 Z"/></clipPath>
+    <mask id="chip" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+      <rect width="512" height="512" fill="#fff"/>
+      <polygon points="242,0 282,0 259,66" fill="#000"/>
+    </mask>
+  </defs>
+  <g mask="url(#chip)">
+    <g clip-path="url(#outer)">
+      <rect width="512" height="512" fill="#264866"/>
+      <polygon points="0,0 256,0 256,512 0,512" fill="#335A80"/>
+    </g>
+    <g clip-path="url(#inner)">
+      <rect width="512" height="512" fill="#13283E"/>
+      <polygon points="0,0 262,40 238,130 290,196 234,278 282,350 250,470 250,512 0,512" fill="#0B1A2A"/>
+    </g>
+  </g>
+  <g clip-path="url(#inner)">
+    <polyline points="262,40 238,130 290,196 234,278 282,350 250,470" fill="none" stroke="#46D3E6" stroke-width="34"
+              stroke-linejoin="miter" stroke-miterlimit="10"/>
+  </g>
+</svg>
