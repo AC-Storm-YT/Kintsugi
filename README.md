@@ -15,6 +15,10 @@
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-6CC04A">
 </p>
 
+<p align="center">
+  <img src="assets/screenshot.png" alt="Kintsugi main window showing Memory Integrity and Kernel Stack Protection switched on, system information, tools and the activity log" width="520">
+</p>
+
 > [!WARNING]
 > This application changes system-wide Windows security configuration. An incorrect or unsupported configuration can cause instability, a blue screen, or a boot loop. Create a restore point or system backup first, run the driver scan, and do not force-enable a feature on unsupported hardware unless you understand the risk.
 
@@ -104,12 +108,16 @@ dotnet publish src/Kintsugi/Kintsugi.csproj -c Release -o publish
 
 This produces one self-contained file, `publish\Kintsugi.exe` (about 60 MB), which runs on any 64-bit Windows 11 PC without installing .NET. For day-to-day development, open `Kintsugi.sln` in Visual Studio or run `dotnet build`.
 
-Debug builds can render the main window to an image without elevation, which is handy for checking layout changes:
+Debug builds can capture the UI to an image without elevation, which is handy for checking layout changes:
 
 ```powershell
 $env:__COMPAT_LAYER = "RunAsInvoker"
 .\src\Kintsugi\bin\Debug\net10.0-windows\win-x64\Kintsugi.exe --render window.png
 ```
+
+- `--render <file>`: renders the main window's content off-screen.
+- `--render-dialog <file>`: renders the agreement dialog.
+- `--screenshot <file>`: shows the window briefly and captures it with its title bar (used for `assets/screenshot.png`).
 
 ### Continuous integration
 
@@ -126,9 +134,12 @@ Kintsugi.sln
 assets/
 ├── logo.png                     # README image
 ├── logo.svg                     # Logo source (vector)
-└── logo-small.svg               # Simplified logo for 16–32 px icons
+├── logo-small.svg               # Simplified logo for 16–32 px icons
+└── screenshot.png               # README screenshot of the main window
 src/Kintsugi/
 ├── App.xaml(.cs)                # Startup: single instance, elevation and version checks, agreement
+├── Debugging/
+│   └── WindowCapture.cs         # Debug-only window capture for screenshots
 ├── Views/
 │   ├── MainWindow.xaml(.cs)     # Main window: feature switches, system panel, tools, activity log
 │   └── Dialog.xaml(.cs)         # Themed message and confirmation dialogs

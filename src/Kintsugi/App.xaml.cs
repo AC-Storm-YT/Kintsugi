@@ -44,6 +44,13 @@ public partial class App : Application
             _ = RenderDialogAsync(dialogOutput);
             return;
         }
+
+        // "--screenshot out.png" shows the window on screen briefly and captures it with its title bar.
+        if (e.Args is ["--screenshot", var screenshotOutput])
+        {
+            _ = ScreenshotMainWindowAsync(screenshotOutput);
+            return;
+        }
 #endif
 
         // Only one copy may change security settings at a time.
@@ -135,6 +142,19 @@ public partial class App : Application
         await Task.Delay(300);
 
         SaveWindow(window, output);
+        Shutdown();
+    }
+
+    private async Task ScreenshotMainWindowAsync(string output)
+    {
+        var window = new MainWindow { Topmost = true };
+        MainWindow = window;
+        window.Show();
+        await Task.Delay(300);
+        await window.FirstRefresh;
+        window.Activate();
+        await Task.Delay(1000);   // let the desktop compositor draw the final frame
+        Debugging.WindowCapture.SavePng(window, output);
         Shutdown();
     }
 
