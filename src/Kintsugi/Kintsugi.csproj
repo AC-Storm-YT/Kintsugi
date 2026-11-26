@@ -17,6 +17,7 @@
     <Description>Memory Integrity and Kernel Stack Protection repair tool for Windows 11</Description>
     <Copyright>Copyright © 2026</Copyright>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
   </PropertyGroup>
 
   <!-- Publishing produces one self-contained Kintsugi.exe: no .NET install needed on the target PC. -->
